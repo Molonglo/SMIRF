@@ -1,0 +1,164 @@
+CONFIG_NAME                     smirf.cfg
+
+
+#************************************************************************
+# SIMULATE?
+#************************************************************************
+
+SIMULATE                        false
+
+
+
+#************************************************************************
+# DIR CONFIG
+#************************************************************************
+
+SMIRF_BIN_DIR                   /home/vivek/workspaces/cuda8_workspace/SMIRFsoup/Debug
+
+SMIRF_BASE                      /data/mopsr/smirf
+
+ARCHIVES_BASE                   /data/mopsr/rawdata
+
+FB_DIR                          FB
+
+BS_DIR_PREFIX                   BS
+
+BEAM_PROCESSOR_PREFIX           BP
+
+BEAM_DIR_PREFIX                 BEAM_
+
+DEDISP_MULTI_ROOT               /home/vivek/software/dedisp
+
+GCC_ROOT                        /opt/gcc-4.9.4
+
+CUDA_ROOT                       /opt/cuda-8.0.61
+
+
+#the node that performs stitches of points that go from one beam to another
+
+EDGE_NODE                       mpsr-bf08
+
+EDGE_BS                         08
+
+#************************************************************************
+# BACKEND CONFIG
+#************************************************************************
+
+
+BACKEND_PORT                     31010
+BACKEND_IP                       172.17.228.204
+
+GLOBAL_BACKEND                   live_320chan_8ant_44pfb_352_beams
+
+SMIRF_BACKEND                    live_320chan_8ant_44pfb_352_beams_smirf
+
+CONFIG_ROOT			 /home/dada/linux_64/share
+
+MOPSR_CONFIG                     mopsr.cfg
+
+MOPSR_BP_CONFIG                  mopsr_bp.cfg
+
+MOPSR_BP_CORNERTURN_CONFIG       mopsr_bp_cornerturn.cfg
+
+MOPSR_BS_CONFIG                  mopsr_bs.cfg
+
+MOPSR_CONFIG                     mopsr.cfg
+
+#************************************************************************
+# TCC_CONFIG
+#************************************************************************
+
+TCC_STATUS_PORT                  38013
+TCC_CONTROL_PORT                 38012
+TCC_CONTROL_IP                   127.0.0.1
+TCC_STATUS_IP                    127.0.0.1
+
+# all in degrees per second
+SLEW_RATE_MD                     0.0416
+SLEW_RATE_NS_FAST                0.08
+SLEW_RATE_NS_SLOW                0.016
+
+#arbitrary time to add for ramp up and down -- in seconds.
+RAMP_TIME                        5.0
+
+ON_SOURCE_THRESHOLD_NS           0.2
+ON_SOURCE_THRESHOLD_MD           0.2
+
+#************************************************************************
+# SURVEY AREA AND BOUNDARY CONFIG
+#************************************************************************
+
+MIN_MD                           -60.0
+MAX_MD                           +60.0
+
+MIN_HA                           -6.0
+MAX_HA                           +6.0
+
+MIN_NS                           -54.0
+MAX_NS                           +54.0
+
+MIN_GL                           -115.0
+MAX_GL                           +035.0
+
+MIN_GB                           -4.0
+MAX_GB                           +4.0
+
+NS_BEAM                          2.14
+MD_BEAM                          4.64
+MD_FOR_FANBEAM                   4.0
+
+TILING_DIAMETER                  2.0
+STITCH_SPILLOVER_THRESHOLD       05.0
+
+SURVEY_TOBS                      720
+PHASE_CAL_TOBS                   1200
+FLUX_CAL_TOBS                    720
+
+FFT_SIZE                         2097152                                 
+
+PID                              P001
+
+PSRCAT                           /home/vivek/SMIRF/db/self.db
+
+FIL_TSAMP                        0.00032768
+
+USER                             vivek
+
+
+#************************************************************************
+# NEPENTHES CONFIG - RECOMMENDED NOT TO BE CHANGED AS SOME DEBUG CODE DEPENDS ON THIS
+#************************************************************************
+
+NEPENTHES_BIN_DIR               /home/vivek/SMIRF/jars
+
+NEPENTHES_END                   end
+
+NEPENTHES_UTC_PREFIX            utc:
+
+NEPENTHES_STATUS_PREFIX         status
+
+POINTS_FILE_EXT                 .pts
+
+SMIRFSOUP_TRIGGER               obs.completed
+
+SMIRFSOUP_OUT                   obs.peasouped
+
+
+#************************************************************************
+# CALIBRATION CONFIG
+#************************************************************************
+
+
+CALIBRATE_SCRIPT                 "python ~observer/bin/calib.py -b 1024 -n 352 -c cc.sum -antf ../obs.antenna  -tsamp 0.032 -nchan 32 -thresh 7 -nused 44 -nukeF1 -top 8"
+
+UPDATE_DELAYS_SCRIPT             "~dada/linux_64/share/update_delays_snr.csh calib.delays"
+
+
+#************************************************************************
+# SURVEY STORE CONFIG
+#************************************************************************
+
+SURVEY_HOST                     mpsr-bf08
+SURVEY_USER                     dada
+SURVEY_DIR                      /smirf
+SURVEY_NAME                     survey_0

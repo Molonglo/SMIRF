@@ -1,0 +1,6 @@
+#!/bin/csh
+date
+cd workspaces/cuda8_workspace/SMIRFsoup/Debug/
+set host = `hostname | awk -F. '{print $1}'`
+
+./SMIRFsoup -u 2psrs.${host} -U  . -i 2017-03-11-00:21:21  -S . -Z -A /data/mopsr/smirf/test/

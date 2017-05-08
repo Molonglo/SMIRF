@@ -1,0 +1,6 @@
+#!/bin/csh
+
+foreach file( *.cfg )
+	echo backing up $file
+	cp $file $file.bkup
+end

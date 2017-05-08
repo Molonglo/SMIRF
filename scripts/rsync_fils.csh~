@@ -1,0 +1,37 @@
+#!/bin/csh
+
+if( $#argv < 2 ) then
+    echo "rsync.csh <node> <out> <raw_files>..."
+    exit
+endif
+
+set node = $1
+set out = $2
+shift
+shift
+set existing_files = ()
+set to_be_transferred = ()
+
+foreach file($*)
+
+    if( -f $file ) then
+	set existing_files = ($existing_files $file)
+    else
+	set to_be_transferred = ($to_be_transferred "${node}:$file")
+    endif
+
+end
+
+echo "Existing files: " 
+foreach file($existing_files)
+    echo $file    
+end
+
+echo "Transferring the following files from " $node  ":"
+foreach file($to_be_transferred)
+    echo $file    
+end
+
+
+echo "rsync -avPz $to_be_transferred ."
+
